@@ -17,3 +17,15 @@ development environment helps you take full advantage of this)
 * [jQuery v1.6.4](http://jquery.com/) because it's jQuery, can't live without it
 * [Backbone.js](http://documentcloud.github.com/backbone/) provides the model-view-collections framework and a lot of building blocks
 * [CoffeeScript](http://jashkenas.github.com/coffee-script) just to make javascript a lot nicer.
+* [less](http://lesscss.org/) to make writing css a bit nicer.
+
+
+##Cakefile
+
+There is a cakefile with 3 task to ease building. The tasks are:
+
+*  `cake build` concatenates (in the order of: Models first, then collections, then views and finally main.coffee) and builds it all into a app.js file.
+*  `cake buildCss` builds the style.css file based on style.less
+*  `cake watch` watches for changes in either src or css folders and then builds a new css or js file depending on which changed
+
+**These files use growlnotify for notifications, that might require some tweaking on non OS X computer**
