@@ -7,6 +7,24 @@ util    = require 'util'
 coffeeDir = 'src/'
 
 
+#prodSrcCoffeeDir     = 'src/'
+#testSrcCoffeeDir     = 'test/src/coffee-script'
+
+#prodTargetJsDir      = 'production/src/js'
+#testTargetJsDir      = 'test/src/js'
+
+#prodTargetFileName   = 'app'
+#prodTargetCoffeeFile = "#{prodSrcCoffeeDir}/#{prodTargetFileName}.coffee"
+#prodTargetJsFile     = "#{prodTargetJsDir}/#{prodTargetFileName}.js"
+
+#prodCoffeeOpts = "--bare --output #{prodTargetJsDir} --compile #{prodTargetCoffeeFile}"
+#testCoffeeOpts = "--output #{testTargetJsDir}"
+
+#prodCoffeeSubdirs = [
+#    'Models'
+#    'Collections'
+#    'Views'
+#]
 task 'build', 'Build a single JavaScript file from prod files', ->
   util.log "Building..."
   exec "coffee --join src/app.js --compile src/Models/*.coffee src/Collections/*.coffee src/Views/*.coffee  src/main.coffee", (err, stdout, stderr) ->
@@ -30,6 +48,8 @@ task 'buildCss', 'Building a single css file out of all less files', ->
 #src/Collections/*.coffee src/Views/*.coffee 
 
 task 'watch', 'Watch prod source files and build changes', ->
+    invoke 'build'
+    invoke 'buildCss'
     util.log "Watching for changes in #{coffeeDir}"
     exec "find src -name *.coffee", (err, stdout, stderr) ->
       ls = stdout.split("\n").reverse()
